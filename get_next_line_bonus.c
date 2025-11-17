@@ -6,7 +6,7 @@
 /*   By: hmarkoun <hmarkoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/20 11:04:12 by hmarkoun          #+#    #+#             */
-/*   Updated: 2025/11/17 14:23:47 by hmarkoun         ###   ########.fr       */
+/*   Updated: 2025/11/11 17:36:58 by hmarkoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,9 @@ char	*get_next_line(int fd)
 	char		*temp_buffer;
 	char		*line;
 
-	if (fd < 0 || BUFFER_SIZE <= 0)
+	if (fd < 0 || BUFFER_SIZE <= 0 || BUFFER_SIZE >= INT_MAX)
+		return (ft_free(&saved_buffer[fd]));
+	if (read(fd, 0, 0) < 0)
 		return (ft_free(&saved_buffer[fd]));
 	if (!ft_strchr(saved_buffer[fd], '\n'))
 	{
